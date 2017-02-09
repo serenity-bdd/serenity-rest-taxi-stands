@@ -23,7 +23,7 @@ public class TaxiRankPropertyChecker {
 
     public void existsIn(List<Map> places) {
 
-        for(Map place : places) {
+        for (Map place : places) {
             if (expectedTaxiRankMatches(place)) {
                 return;
             }
@@ -33,12 +33,14 @@ public class TaxiRankPropertyChecker {
 
     private boolean expectedTaxiRankMatches(final Map place) {
 
-        if (!place.get("commonName").equals(expectedTaxiRank.get("commonName"))) { return false; }
+        if (!place.get("commonName").equals(expectedTaxiRank.get("commonName"))) {
+            return false;
+        }
 
         List<HashMap> allActualProperties = (List<HashMap>) place.get("additionalProperties");
 
-        for( HashMap actualProperties : allActualProperties) {
-            for(String property : ADDITIONAL_PROPERTIES) {
+        for (HashMap actualProperties : allActualProperties) {
+            for (String property : ADDITIONAL_PROPERTIES) {
                 if (additionalPropertyDoesNotMatch(actualProperties, property)) return false;
             }
         }

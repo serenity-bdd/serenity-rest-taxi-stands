@@ -6,5 +6,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/discover_places",
-                 glue = "net.serenitybdd.demos.taxiranks")
-public class DiscoverPlaces {}
+        glue = "net.serenitybdd.demos.taxiranks")
+public class DiscoverPlaces {
+}

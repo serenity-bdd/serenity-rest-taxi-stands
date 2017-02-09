@@ -41,9 +41,10 @@ public class ListPlaceTypesSteps {
 
 
     private final Map<ContentType, Function<String, List<String>>> FETCH_PLACE_TYPES;
+
     {
         FETCH_PLACE_TYPES = ImmutableMap.of(
-                XML,  (placeData) -> XmlPath.from(placeData).getList("ArrayOfstring.string"),
+                XML, (placeData) -> XmlPath.from(placeData).getList("ArrayOfstring.string"),
                 JSON, (placeData) -> JsonPath.from(placeData).getList(".")
         );
     }

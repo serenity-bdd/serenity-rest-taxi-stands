@@ -12,6 +12,6 @@ Feature: Find available place types
       | TaxiRank  |
 
     Examples:
-    | format |
-    | XML    |
-    | JSON   |
+      | format |
+      | XML    |
+      | JSON   |

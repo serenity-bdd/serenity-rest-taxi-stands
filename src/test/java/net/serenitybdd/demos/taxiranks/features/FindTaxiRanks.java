@@ -6,5 +6,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/find_taxi_ranks",
-                 glue = "net.serenitybdd.demos.taxiranks")
-public class FindTaxiRanks {}
+        glue = "net.serenitybdd.demos.taxiranks")
+public class FindTaxiRanks {
+}
