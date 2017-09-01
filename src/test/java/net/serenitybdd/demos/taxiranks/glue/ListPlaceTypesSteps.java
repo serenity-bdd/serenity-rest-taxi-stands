@@ -1,26 +1,27 @@
 package net.serenitybdd.demos.taxiranks.glue;
 
 import com.google.common.collect.ImmutableMap;
-import com.jayway.restassured.http.ContentType;
-import com.jayway.restassured.path.json.JsonPath;
-import com.jayway.restassured.path.xml.XmlPath;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.path.xml.XmlPath;
 import net.serenitybdd.demos.apis.TFLPlaces;
+import net.serenitybdd.demos.apis.TFLResponse;
 
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import static com.jayway.restassured.http.ContentType.JSON;
-import static com.jayway.restassured.http.ContentType.XML;
+import static io.restassured.http.ContentType.JSON;
+import static io.restassured.http.ContentType.XML;
 import static net.serenitybdd.rest.SerenityRest.given;
 import static net.serenitybdd.rest.SerenityRest.then;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ListPlaceTypesSteps {
 
-    ContentType contentType;
+    private ContentType contentType;
 
     @When("^(?:.*) retrieves? all the available place types in (.*)$")
     public void retrieveAllTheAvailablePlaceTypesInFormat(ContentType contentType) throws Throwable {
@@ -28,11 +29,16 @@ public class ListPlaceTypesSteps {
 
         given().accept(contentType)
                 .when().get(TFLPlaces.placeTypes());
+
+        TFLResponse.withContent(then().extract().asString()).shouldBeValid();
+
     }
 
     @Then("^(?:.*) should see at least the following place types:$")
     public void shouldSeeAtLeastTheFollowingPlaceTypes(List<String> expectedPlaceTypes) throws Throwable {
-        String placeData = then().extract().asString();
+        String placeData = then()
+                            .statusCode(200)
+                            .extract().asString();
 
         List<String> actualPlaceTypes = FETCH_PLACE_TYPES.get(contentType).apply(placeData);
 

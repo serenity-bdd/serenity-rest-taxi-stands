@@ -1,11 +1,12 @@
 package net.serenitybdd.demos.taxiranks.glue;
 
-import com.jayway.restassured.path.json.JsonPath;
 import cucumber.api.Transform;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.restassured.path.json.JsonPath;
 import net.serenitybdd.demos.apis.TFLPlaces;
+import net.serenitybdd.demos.apis.TFLResponse;
 import net.serenitybdd.demos.model.locations.Place;
 import net.serenitybdd.demos.model.locations.TaxiStand;
 import net.serenitybdd.demos.model.locations.TubeStation;
@@ -21,9 +22,9 @@ import static org.hamcrest.Matchers.*;
 
 public class FindingTaxiStandSteps {
 
-    TubeStation currentLocation;
+    private TubeStation currentLocation;
 
-    String jsonResponse;
+    private String jsonResponse;
 
     @Given("(?:.*) is (?:at|planning a getaway from) (.*)")
     public void userIsCurrentlyAt(@Transform(TubeStationConverter.class) TubeStation tubeStation) {
@@ -33,14 +34,14 @@ public class FindingTaxiStandSteps {
     // Specifying parameters
     @When("^s?he looks for the closest taxi rank within (\\d+) meters$")
     public void lookForTheClosestTaxiRankWithin(int maximumDistance) throws Throwable {
-        with().parameters(
+        with().params(
                 "lat", currentLocation.latitude,
                 "lon", currentLocation.longitude,
                 "radius", maximumDistance)
                 .get(TFLPlaces.find(Place.TaxiRank));
 
         jsonResponse = then().extract().asString();
-
+        TFLResponse.withContent(jsonResponse).shouldBeValid();
     }
 
 
@@ -82,7 +83,7 @@ public class FindingTaxiStandSteps {
 
         List<Map> places = JsonPath.from(jsonResponse).getList("places", Map.class);
 
-        taxiRanks.stream().forEach(
+        taxiRanks.forEach(
                 (Map<String, String> taxiRank) -> checkThatATaxiRankLike(taxiRank).existsIn(places)
         );
     }

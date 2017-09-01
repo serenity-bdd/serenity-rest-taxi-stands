@@ -37,7 +37,7 @@ public class TaxiRankPropertyChecker {
             return false;
         }
 
-        List<HashMap> allActualProperties = (List<HashMap>) place.get("additionalProperties");
+        List<HashMap<String,String>> allActualProperties = (List<HashMap<String,String>>) place.get("additionalProperties");
 
         for (HashMap actualProperties : allActualProperties) {
             for (String property : ADDITIONAL_PROPERTIES) {
