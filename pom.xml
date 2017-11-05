@@ -11,9 +11,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>1.7.0-rc.1</serenity.version>
-        <serenity.maven.version>1.7.0-rc.1</serenity.maven.version>
-        <serenity.cucumber.version>1.6.2</serenity.cucumber.version>
+        <serenity.version>1.7.0</serenity.version>
+        <serenity.maven.version>1.7.0</serenity.maven.version>
+        <serenity.cucumber.version>1.6.3</serenity.cucumber.version>
         <webdriver.base.url>http://todomvc.com/examples/angularjs/#/</webdriver.base.url>
         <encoding>UTF-8</encoding>
         <serenity.test.root></serenity.test.root>
@@ -26,7 +26,7 @@
                 <enabled>false</enabled>
             </snapshots>
             <id>central</id>
-            <name>bintray</name>
+            <name>bintry</name>
             <url>http://jcenter.bintray.com</url>
         </repository>
     </repositories>
