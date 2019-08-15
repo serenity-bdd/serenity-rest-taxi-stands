@@ -3,7 +3,7 @@ Feature: Find taxi stands by location
   As a car-less bank robber
   I want to know all the taxi stands in a given location
 
-  Scenario: Provie useful practical information about each taxi rank
+  Scenario: Provide useful practical information about each taxi rank
     Given Joe is planning a getaway from Canary Wharf
     When he looks for the closest taxi rank within 100 meters
     Then he should find the taxi ranks with the following details
