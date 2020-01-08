@@ -3,6 +3,8 @@ Feature: Find available place types
   As an application developer
   I want to know about the types of places supported by the TFL API
 
+  @location:canary-wharf
+  @location:london-bridge
   Scenario Outline: List all available place types in different formats
     When I retrieve all the available place types in <format>
     Then I should see at least the following place types:

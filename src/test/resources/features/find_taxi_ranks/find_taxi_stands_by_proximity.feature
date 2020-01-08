@@ -8,13 +8,18 @@ Feature: Find taxi stands by proximity
     When he looks for the closest taxi rank within <distance> meters
     Then <number-of-taxis> taxi ranks should be found
     And all of the taxi ranks should be no more than <distance> meters away
-    Examples:
+    @location:london-bridge
+    Examples: London Bridge
       | station               | distance | number-of-taxis |
       | London Bridge Station | 500      | 5               |
       | London Bridge Station | 1000     | 18              |
-      | Canary Wharf          | 100      | 3               |
-      | Canary Wharf          | 20       | 0               |
+    @location:canary-wharf
+    Examples: Canary Wharf
+      | station      | distance | number-of-taxis |
+      | Canary Wharf | 100      | 3               |
+      | Canary Wharf | 20       | 0               |
 
+  @location:london-bridge
   Scenario: The closest taxi rank should appear first
     Given Joe is at London Bridge Station
     When he looks for the closest taxi rank within 500 meters
@@ -22,6 +27,7 @@ Feature: Find taxi stands by proximity
       | commonName                       | distance  |
       | Tooley Street (Duke Street Hill) | 182.06776 |
 
+  @location:london-bridge
   Scenario: Where there are no taxi stands nearby none should be found
     Given Joe is at London Bridge Station
     When he looks for the closest taxi rank within 50 meters

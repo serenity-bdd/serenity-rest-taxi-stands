@@ -13,6 +13,8 @@ import net.serenitybdd.demos.model.locations.Place;
 import net.serenitybdd.demos.model.locations.TaxiStand;
 import net.serenitybdd.demos.model.locations.TubeStation;
 import net.serenitybdd.demos.taxiranks.glue.transformers.TubeStationConverter;
+import net.thucydides.core.annotations.Steps;
+import org.junit.Assume;
 
 import java.util.List;
 import java.util.Map;
@@ -33,9 +35,13 @@ public class FindingTaxiStandSteps {
         this.currentLocation = tubeStation;
     }
 
+    @Steps
+    StepLibrary stepLibrary;
+
     // Specifying parameters
     @When("^s?he looks for the closest taxi rank within (\\d+) meters$")
     public void lookForTheClosestTaxiRankWithin(int maximumDistance) throws Throwable {
+
         with().params(
                 "lat", currentLocation.latitude,
                 "lon", currentLocation.longitude,
