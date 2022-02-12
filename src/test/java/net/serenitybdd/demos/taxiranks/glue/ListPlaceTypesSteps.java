@@ -1,8 +1,8 @@
 package net.serenitybdd.demos.taxiranks.glue;
 
 import com.google.common.collect.ImmutableMap;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.path.xml.XmlPath;
@@ -28,6 +28,8 @@ public class ListPlaceTypesSteps {
         this.contentType = contentType;
 
         given().accept(contentType)
+                .params("grant_type","authorization_code")
+                .params("redirect_uri","redirect.url.com")
                 .when().get(TFLPlaces.placeTypes());
 
         TFLResponse.withContent(then().extract().asString()).shouldBeValid();

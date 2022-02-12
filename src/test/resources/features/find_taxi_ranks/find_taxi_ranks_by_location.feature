@@ -16,7 +16,7 @@ Feature: Find taxi stands by location
 
     Examples:
       | Location     | Distance |
-      | Canary Wharf | 90      |
+      | Canary Wharf | 90       |
       | Canary Wharf | 100      |
       | Canary Wharf | 120      |
       | Canary Wharf | 150      |

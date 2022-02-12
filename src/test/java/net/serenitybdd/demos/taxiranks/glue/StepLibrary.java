@@ -1,6 +1,5 @@
 package net.serenitybdd.demos.taxiranks.glue;
 
-import com.gargoylesoftware.htmlunit.javascript.host.fetch.Response;
 import net.thucydides.core.annotations.Step;
 
 public class StepLibrary {

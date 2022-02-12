@@ -1,6 +1,6 @@
 package net.serenitybdd.demos.taxiranks.glue;
 
-import cucumber.api.java.Before;
+import io.cucumber.java.Before;
 import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
 
